@@ -56,7 +56,7 @@ Ensurance marketing described a "customised online platform" giving intermediari
 
 ### Auth, specs, events
 
-- **Auth model:** none public. No API key issuance, no OAuth2, no mTLS, no SAML federation. `/.well-known/openid-configuration` and `/.well-known/oauth-authorization-server` return 404 on every Ensurance and Chase hostname. The historic BOB portal used form-based session login.
+- **Auth model:** none public. No API key issuance, no OAuth2, no mTLS, no SAML federation. `/.well-known/openid-configuration` and `/.well-known/oauth-authorization-server` are served by no Ensurance or Chase hostname — 301 (catch-all redirect) on the `ensurance.com.au` and `ensurance.ltd` apexes, 404 on `3rdp.`, `api.ensurance.ltd` and Chase. The historic BOB portal used form-based session login.
 - **OpenAPI / Swagger:** none. `/openapi.json`, `/openapi.yaml`, `/swagger.json`, `/v1/openapi.json`, `/api-docs`, `/spec` and `/redoc` all 404. There is no `openapi/` directory in this repository because there is nothing real to put in it.
 - **AsyncAPI / webhooks / events:** none.
 - **GraphQL, gRPC, Postman:** none.
@@ -74,6 +74,21 @@ Australia has the legal machinery for open insurance and no live obligation. APR
 ## Identity note
 
 `github.com/ensurance` is an **unrelated** organisation (contact `opensource@howtohireme.ru`, two repositories, last updated 2018). It is deliberately not attributed to this company.
+
+## Artifacts in this record
+
+There is no `openapi/`, `asyncapi/`, `mcp/`, `skills/`, `errors/`, `conventions/`, `scopes/` or `authentication/` directory here, because there is no specification and no auth surface to derive them from. What the enrichment pipeline could honestly produce is:
+
+- [`conformance/ensurance-conformance.yml`](conformance/ensurance-conformance.yml) — standards posture as evidenced negatives: OpenAPI, AsyncAPI, GraphQL, gRPC, OAuth2, OIDC, RFC 9457, RFC 9116, RFC 8594, and the insurance interchange standards (ACORD AL3, ACORD XML, NGDS, IVANS), plus the Australian CDR general-insurance designation-then-deferral.
+- [`lifecycle/ensurance-lifecycle.yml`](lifecycle/ensurance-lifecycle.yml) — the estate lifecycle: certificate issued 2025-06-28, expired 2025-09-26, whole domain family 301'd to Chase by 2026-07-25; retired `bob.`/`partner.`/`euw.` hosts; surviving `3rdp.` host; successor entity.
+- [`security/ensurance-domain-security.yml`](security/ensurance-domain-security.yml) — probed TLS/HSTS/DNSSEC/CAA/SPF/DMARC. `ensurance.com.au` fails certificate verification and carries no DNSSEC, no CAA and no DMARC record.
+- [`well-known/ensurance-well-known.yml`](well-known/ensurance-well-known.yml) — the `/.well-known` probe log. Zero documents served, so no `WellKnown` or `SecurityTxt` pointer is claimed in `apis.yml`.
+- [`packages/ensurance-packages.yml`](packages/ensurance-packages.yml) — no first-party SDK anywhere, plus the **"ensurance" homonym trap**: unrelated assertion/validation libraries hold that name on npm, PyPI, RubyGems and Packagist and must never be attributed to this company.
+- [`llms/ensurance-llms.txt`](llms/ensurance-llms.txt) — this record in llms.txt form for AI consumers.
+
+### A false positive worth knowing about
+
+Following redirects (`curl -L`) returns **HTTP 200 for every path** on `ensurance.com.au` and `ensurance.ltd` — including `/openapi.json`, `/swagger.json`, `/llms.txt` and `/.well-known/security.txt` — because the blanket 301 lands on the Chase Underwriting page, which returns 200. That 200 is the redirect destination, not the requested document. Probe these hosts with `curl -I` and read the first response.
 
 ## Links
 

@@ -48,6 +48,44 @@ modified: '2026-07-25'
 specificationVersion: '0.19'
 apis: []
 common:
+- type: DomainSecurity
+  url: security/ensurance-domain-security.yml
+  name: Ensurance Domain Security Probe
+  description: >-
+    Probed TLS/HSTS/DNSSEC/CAA/SPF/DMARC for the Ensurance and Chase
+    Underwriting hosts. ensurance.com.au and 3rdp.ensurance.com.au both fail
+    certificate verification (expired 2025-09-26); no DNSSEC, no CAA and no
+    DMARC record on ensurance.com.au.
+- type: Conformance
+  url: conformance/ensurance-conformance.yml
+  name: Ensurance Standards Conformance
+  description: >-
+    Evidenced negatives across OpenAPI, AsyncAPI, GraphQL, gRPC, OAuth2, OIDC,
+    RFC 9457, RFC 9116, RFC 8594 and the insurance interchange standards
+    (ACORD AL3 / ACORD XML / NGDS / IVANS), plus the Australian CDR general
+    insurance designation-then-deferral context.
+- type: Lifecycle
+  url: lifecycle/ensurance-lifecycle.yml
+  name: Ensurance Lifecycle
+  description: >-
+    No API lifecycle exists; this records the estate lifecycle instead —
+    certificate expiry 2025-09-26, blanket 301 of the whole domain family to
+    Chase Underwriting, the retired BOB/partner/euw hosts, and the surviving
+    3RDP host. No status page and no deprecation policy are published.
+- type: Packages
+  url: packages/ensurance-packages.yml
+  name: Ensurance Packages
+  description: >-
+    No first-party SDK, client library or CLI in any registry — Ensurance had
+    no public API to wrap. Documents the "ensurance" homonym trap: unrelated
+    assertion/validation libraries hold the name on npm, PyPI, RubyGems and
+    Packagist and must not be attributed to this company.
+- type: LLMsTxt
+  url: llms/ensurance-llms.txt
+  name: Ensurance llms.txt
+  description: >-
+    Generated llms.txt summarising this record for AI consumers, including the
+    redirect false-positive warning and links to every artifact in the repo.
 - type: Website
   url: https://ensurance.com.au/
   name: Ensurance Website

@@ -1,0 +1,54 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  npm registry search, PyPI, RubyGems, Packagist and GitHub org lookup for
+  "ensurance", 2026-07-25
+summary: >-
+  Ensurance Limited published no client libraries, SDKs or CLI in any package
+  registry. It had no public API to wrap. No `SDKs` pointer is emitted in
+  apis.yml because no first-party library exists.
+packages: []
+homonym_trap: >-
+  "ensurance" is a widely used misspelling of ensure/assurance, so several
+  unrelated assertion/validation utility libraries occupy the name across
+  registries. NONE are attributable to Ensurance Limited (ASX:ENA) or to
+  Ensurance UK Limited. Recorded here so a future enrichment round does not
+  claim them as first-party SDKs.
+false_matches:
+- registry: npm
+  name: ensurance
+  url: https://www.npmjs.com/package/ensurance
+  description: "An insurance policy to make sure of value existence"
+  repository: https://github.com/sharingapples/insurance
+  official: false
+  note: Generic JS value-existence assertion helper by sharingapples. Unrelated.
+- registry: pypi
+  name: ensurance
+  url: https://pypi.org/project/ensurance/
+  description: "Input Array Ensurance Functions"
+  author: Andrew Quinn (University of Oxford, Psychiatry)
+  official: false
+  note: Numpy input-array validation helpers. Unrelated academic package.
+- registry: rubygems
+  name: ensurance
+  url: https://rubygems.org/gems/ensurance
+  description: "A handy shortcut for user = user.is_a?(User) ? user : User.find(user)"
+  repository: https://github.com/bsharpe/ensurance
+  official: false
+  note: ActiveRecord type-coercion gem. Unrelated.
+- registry: packagist
+  name: dgame/php-ensurance
+  url: https://packagist.org/packages/dgame/php-ensurance
+  description: "php ensurance"
+  repository: https://github.com/Dgame/php-ensurance
+  official: false
+  note: PHP expectation/assertion library. Unrelated.
+registries_probed:
+- npm
+- pypi
+- rubygems
+- packagist
+- >-
+  github — the "ensurance" org exists (HTTP 200, 2 public repos, contact
+  opensource@howtohireme.ru) but is unrelated and is deliberately NOT
+  attributed to this company, per review.yml identity-hygiene note.

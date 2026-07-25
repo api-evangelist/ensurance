@@ -1,0 +1,79 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  live probes of the ensurance.com.au / ensurance.ltd domain family and the
+  Wayback record, 2026-07-25
+summary: >-
+  There is no API lifecycle to record because there was never an API. What this
+  artifact captures instead is the lifecycle of the digital estate itself: a
+  partner-gated broker portal that went offline, a TLS certificate left to
+  expire, and a domain family now blanket-redirecting to a different company.
+  No `StatusPage` and no `Deprecation` pointer is emitted in apis.yml — the
+  provider publishes neither.
+versioning:
+  scheme: none
+  current: null
+  docs: null
+  note: No versioned API, no version header, no dated release train.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No deprecation policy and no RFC 8594 Sunset/Deprecation header support.
+    Surfaces were withdrawn by DNS removal without notice.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+estate_lifecycle:
+- date: '2025-06-28'
+  event: >-
+    Last Let's Encrypt (E5) certificate issued for CN=ensurance.com.au.
+  evidence: TLS handshake, review.yml tls block.
+- date: '2025-09-26'
+  event: >-
+    ensurance.com.au TLS certificate expired and was never renewed. Any client
+    with default certificate verification can no longer connect to the primary
+    domain.
+  evidence: TLS handshake 2026-07-25; probe-domain-security.py CERTIFICATE_VERIFY_FAILED.
+- date: '2026-07-25'
+  event: >-
+    Every path on ensurance.com.au and ensurance.ltd returns HTTP 301
+    (nginx/1.26.2) to a single Chase Underwriting Solutions page. The domain
+    family no longer serves any Ensurance content.
+  evidence: live probes; review.yml probes[].
+retired_surfaces:
+- host: bob.ensurance.com.au
+  role: >-
+    BOB — the "customised online platform" for intermediaries; an ASP.NET MVC
+    quote-and-proposal wizard behind /Login/Login with per-agent deep links of
+    the form /Proposal/New/3/Agent/{AGENTCODE}. A session-login agent portal,
+    never a programmatic interface.
+  status: NXDOMAIN
+  date_observed: '2026-07-25'
+- host: partner.ensurance.com.au
+  role: Historic partner host.
+  status: NXDOMAIN
+  date_observed: '2026-07-25'
+- host: euw.ensurance.com.au
+  role: Historic Ensurance UK Wide host.
+  status: NXDOMAIN
+  date_observed: '2026-07-25'
+surviving_surfaces:
+- host: 3rdp.ensurance.com.au
+  role: >-
+    "3RDP | Innovative Remote Platform" — an internal secure remote-desktop and
+    VPN description page, the only ensurance.com.au hostname still serving its
+    own content. Not an insurance API surface.
+  status: 200 (expired certificate)
+  date_observed: '2026-07-25'
+successor:
+  name: Chase Underwriting Solutions Pty Ltd
+  url: https://www.chaseunderwriting.com.au/capabilities/professional-risks/
+  identifiers: ABN 50 156 554 808, AFSL 454344
+  note: >-
+    The observed destination of all Ensurance traffic. Recorded as an observed
+    redirect only; no corporate transaction terms are asserted. Chase publishes
+    no API, no developer portal and no ACORD posture either (all candidate
+    spec and /.well-known paths return 404).
+deprecated_operations: []

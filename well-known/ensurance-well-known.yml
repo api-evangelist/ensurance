@@ -1,0 +1,125 @@
+generated: '2026-07-25'
+method: searched
+source: live HTTP probes of every resolving Ensurance hostname, 2026-07-25
+summary: >-
+  No .well-known discovery document of any kind is served by any Ensurance
+  hostname. Every path on ensurance.com.au and ensurance.ltd — including the
+  entire /.well-known/ namespace — returns HTTP 301 (nginx/1.26.2) to a single
+  Chase Underwriting Solutions marketing page. No document was harvested, so
+  this repository deliberately carries NO `WellKnown` or `SecurityTxt` pointer
+  in apis.yml: there is no catalog to point at.
+false_positive_warning: >-
+  IMPORTANT for future enrichment rounds. A redirect-following probe
+  (curl -L) reports HTTP 200 for EVERY path on ensurance.com.au and
+  ensurance.ltd — including /.well-known/security.txt, /llms.txt,
+  /openapi.json and /swagger.json — because the blanket 301 lands on the Chase
+  Underwriting HTML page, which returns 200. The 200 is the redirect
+  destination, not the requested document. Always probe these hosts with
+  curl -I (no -L) and read the status of the FIRST response.
+documents: []
+probes:
+- host: https://ensurance.com.au
+  results:
+  - path: /.well-known/security.txt
+    status: 301
+    note: nginx/1.26.2 -> https://www.chaseunderwriting.com.au/capabilities/professional-risks
+  - path: /.well-known/openid-configuration
+    status: 301
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+  - path: /.well-known/api-catalog
+    status: 301
+  - path: /.well-known/ai-plugin.json
+    status: 301
+  - path: /llms.txt
+    status: 301
+  - path: /openapi.json
+    status: 301
+  - path: /swagger.json
+    status: 301
+  note: >-
+    TLS certificate expired 2025-09-26; probes require certificate
+    verification to be disabled to reach the host at all.
+- host: https://ensurance.ltd
+  results:
+  - path: /.well-known/security.txt
+    status: 301
+  - path: /.well-known/openid-configuration
+    status: 301
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+  - path: /.well-known/api-catalog
+    status: 301
+  - path: /.well-known/ai-plugin.json
+    status: 301
+  - path: /llms.txt
+    status: 301
+  - path: /openapi.json
+    status: 301
+  - path: /swagger.json
+    status: 301
+  note: Same blanket 301 behaviour as the .com.au apex.
+- host: https://3rdp.ensurance.com.au
+  results:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /swagger.json
+    status: 404
+  note: >-
+    The only ensurance.com.au hostname serving its own content (an internal
+    remote-desktop/VPN description page). Serves no discovery documents.
+- host: https://api.ensurance.ltd
+  results:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /swagger.json
+    status: 404
+  note: >-
+    Wildcard-DNS placeholder host serving a default Bootstrap template
+    ("Tapanko"). Not an API host. See review.yml probes.
+- host: https://www.chaseunderwriting.com.au
+  results:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /swagger.json
+    status: 404
+  note: >-
+    The live destination of all Ensurance traffic. A separate company
+    (Chase Underwriting Solutions Pty Ltd) that also publishes no discovery
+    documents.

@@ -1,0 +1,35 @@
+# Ensurance
+
+> Ensurance Limited (ASX:ENA) was an Australian ASX-listed insurance underwriting agency headquartered in Perth, Western Australia, with a UK Managing General Agent subsidiary (Ensurance UK Limited, FCA-authorised, Lloyd's coverholder). It underwrote construction-lines products — Licensed Builder Annual Construction, Plant and Liability; Project-Specific Construction; Trades Liability; Owner Builder; Home and Contents — sold exclusively through a broker network the company described as 340-plus intermediaries. **Ensurance publishes no public API and never did.** This record exists so that fact is machine-readable.
+
+## Status (as of 2026-07-25)
+
+- No public API, developer portal, API reference, OpenAPI/Swagger definition, Postman collection, GraphQL endpoint, webhook or event catalogue — live or archived.
+- No ACORD, AL3, ACORD XML, NGDS or IVANS reference anywhere in the estate (verified against a 1,520-URL Wayback CDX index of ensurance.com.au and all subdomains).
+- The only ever integration surface was **BOB** (bob.ensurance.com.au), a session-login ASP.NET MVC quote-and-proposal wizard for brokers — a login wall, not a programmable interface. The host no longer resolves.
+- The ensurance.com.au TLS certificate expired 2025-09-26. Every path on ensurance.com.au and ensurance.ltd now returns HTTP 301 (nginx/1.26.2) to Chase Underwriting Solutions Pty Ltd, which also publishes no API.
+- Beware false positives: following redirects (curl -L) returns HTTP 200 for **any** path on these domains — including /openapi.json and /.well-known/security.txt — because the blanket 301 lands on the Chase page. Probe without -L.
+- api.ensurance.ltd and developer.ensurance.ltd return 200 but serve a default Bootstrap template ("Tapanko") identical to a random control hostname: wildcard DNS, not a developer surface.
+
+## APIs
+
+- None. `apis: []` in apis.yml is a deliberate, evidenced record, not an incomplete profile.
+
+## Artifacts in this record
+
+- [apis.yml](https://raw.githubusercontent.com/api-evangelist/ensurance/refs/heads/main/apis.yml): APIs.json profile for the company.
+- [review.yml](https://raw.githubusercontent.com/api-evangelist/ensurance/refs/heads/main/review.yml): full API Evangelist review — probe log, TLS record, insurance-verb assessment (quote/bind/issue/FNOL all unexposed), ACORD posture, corporate profile, market context.
+- [conformance/ensurance-conformance.yml](https://raw.githubusercontent.com/api-evangelist/ensurance/refs/heads/main/conformance/ensurance-conformance.yml): standards posture — evidenced negatives for OpenAPI, AsyncAPI, GraphQL, gRPC, OAuth2, OIDC, RFC 9457, RFC 9116, RFC 8594, ACORD AL3/XML/NGDS, IVANS, and Australian CDR general insurance.
+- [lifecycle/ensurance-lifecycle.yml](https://raw.githubusercontent.com/api-evangelist/ensurance/refs/heads/main/lifecycle/ensurance-lifecycle.yml): estate lifecycle — certificate expiry, domain redirect, retired hosts, successor entity.
+- [security/ensurance-domain-security.yml](https://raw.githubusercontent.com/api-evangelist/ensurance/refs/heads/main/security/ensurance-domain-security.yml): probed TLS/HSTS/DNSSEC/CAA/SPF/DMARC for the Ensurance and Chase Underwriting domains.
+- [well-known/ensurance-well-known.yml](https://raw.githubusercontent.com/api-evangelist/ensurance/refs/heads/main/well-known/ensurance-well-known.yml): /.well-known probe log; zero documents served.
+- [packages/ensurance-packages.yml](https://raw.githubusercontent.com/api-evangelist/ensurance/refs/heads/main/packages/ensurance-packages.yml): no first-party SDKs; documents the "ensurance" registry homonym trap (unrelated assertion libraries on npm, PyPI, RubyGems, Packagist).
+
+## Market context
+
+Australia has the legal machinery for open insurance and no live obligation. APRA supervises prudentially and ASIC licenses conduct (AFSL), while the Consumer Data Right that already opened banking and energy was designated to extend to general insurance and then deferred. Australian general insurers and underwriting agencies therefore face no forcing function to publish an API. Ensurance is a clean illustration: a company that marketed itself as "innovating the online insurance sector" and still shipped its entire intermediary experience as a login-walled web portal with no API, no specification and no ACORD posture.
+
+## Optional
+
+- [Chase Underwriting Solutions](https://www.chaseunderwriting.com.au/capabilities/professional-risks/): the live destination of every Ensurance request; ABN 50 156 554 808, AFSL 454344. Publishes no API.
+- [3RDP Remote Platform](https://3rdp.ensurance.com.au/): internal remote-desktop/VPN page, the last ensurance.com.au host serving its own content.

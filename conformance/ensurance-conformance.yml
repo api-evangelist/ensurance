@@ -1,0 +1,83 @@
+generated: '2026-07-25'
+method: derived
+source: review.yml (1,520-URL Wayback CDX sweep + live probes 2026-07-25)
+summary: >-
+  Ensurance conforms to no machine-readable API or insurance-interchange
+  standard. There is no specification, no authentication scheme and no event
+  surface to assess, and no compliance programme is published. Every entry
+  below is a recorded negative backed by evidence; none is an assumption.
+  No `Compliance` pointer is emitted in apis.yml — the company publishes no
+  certification or compliance posture.
+standards:
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI or Swagger document at any probed path on any resolving
+    hostname; zero hits across a 1,520-URL domain-wide Wayback CDX index.
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or webhook surface documented.
+- id: graphql
+  conforms: false
+  evidence: No /graphql endpoint on any resolving Ensurance hostname.
+- id: grpc
+  conforms: false
+  evidence: No published .proto definitions.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    /.well-known/oauth-authorization-server returns 301 (blanket redirect) on
+    ensurance.com.au and ensurance.ltd, 404 on every other host. The only
+    historic auth was ASP.NET MVC form/session login at bob.ensurance.com.au
+    /Login/Login.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration is not served by any host.
+- id: mtls
+  conforms: false
+  evidence: No mutual-TLS or client-certificate onboarding documented.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No API, therefore no error envelope.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: >-
+    /.well-known/security.txt is not served (301 on the Ensurance apexes,
+    404 elsewhere). See well-known/ensurance-well-known.yml.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No deprecation or Sunset header signalling on any surface.
+insurance_standards:
+- id: acord-al3
+  conforms: false
+  evidence: >-
+    Case-insensitive search for ACORD and AL3 across the complete 1,520-entry
+    Wayback CDX index for ensurance.com.au and all subdomains returned zero
+    matches.
+- id: acord-xml
+  conforms: false
+  evidence: No ACORD XML message, schema or reference in the live or archived estate.
+- id: acord-ngds
+  conforms: false
+  evidence: No NGDS reference found.
+- id: ivans-agency-download
+  conforms: false
+  evidence: >-
+    No IVANS, agency-download, Sunrise Exchange, SCTP or Ebix reference on the
+    Ensurance estate or on the Chase Underwriting site that now receives its
+    traffic. Wholesale distribution ran on a proprietary web portal (BOB).
+- id: cdr-general-insurance
+  conforms: false
+  evidence: >-
+    Australia's Consumer Data Right was designated to extend to general
+    insurance and then deferred and de-prioritised, so no open-insurance data
+    obligation applies. Recorded as market context, not as a failure to comply.
+regulatory_context:
+  jurisdiction: Australia
+  prudential_supervisor: APRA
+  conduct_regulator: ASIC (AFSL)
+  uk_entity_regulator: UK Financial Conduct Authority (Ensurance UK Limited, MGA)
+  open_data_regime: >-
+    Consumer Data Right — designated for general insurance, implementation
+    deferred. No live API mandate for Australian general insurers or
+    underwriting agencies as of 2026-07-25.
