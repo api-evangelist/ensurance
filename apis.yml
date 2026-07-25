@@ -1,0 +1,74 @@
+aid: ensurance
+url: https://raw.githubusercontent.com/api-evangelist/ensurance/refs/heads/main/apis.yml
+name: Ensurance
+kind: company
+description: >-
+  Ensurance Limited (ASX:ENA) was an Australian ASX-listed insurance underwriting
+  agency headquartered in Perth, Western Australia, marketing itself as "innovating
+  the online insurance sector." Its Australian arm, Ensurance Underwriting Australia,
+  operated as a wholesale underwriting agency under an Australian Financial Services
+  Licence, assembling a consortium of local and international capacity — including
+  Lloyd's, Swiss Re and XL Catlin — behind construction-specific products sold
+  exclusively through intermediaries: Licensed Builder Annual Construction, Plant
+  and Liability, Project-Specific Construction, Trades Liability, Owner Builder, and
+  Home and Contents insurance, distributed to a broker network the company described
+  as 340-plus intermediaries. A sister company, Ensurance UK Limited, ran as a
+  Managing General Agent authorised and regulated by the UK Financial Conduct
+  Authority and a coverholder at Lloyd's. The group's API posture is nil and always
+  was. Ensurance never published a public developer portal, API reference, OpenAPI
+  or Swagger definition, Postman collection, GraphQL endpoint, webhook or event
+  catalogue. What the company called its "customised online platform" for
+  intermediaries was BOB (bob.ensurance.com.au), a form-based, session-login
+  ASP.NET MVC quote-and-proposal wizard keyed to per-agent codes — an agent login
+  wall, not a programmable interface. No ACORD, AL3, ACORD XML or NGDS reference
+  appears anywhere in the company's live or archived web estate. As of this review
+  the ensurance.com.au TLS certificate has expired and every path on the domain,
+  along with the ensurance.ltd domain family, blanket 301-redirects to Chase
+  Underwriting Solutions Pty Ltd, an Australian professional-lines underwriting
+  agency that likewise publishes no API. Ensurance is recorded here as a
+  partner-gated, no-public-API insurance provider in the Australian market — a
+  faithful data point for a sector where the Consumer Data Right was designated
+  for general insurance and then deferred, leaving carriers and underwriting
+  agencies with no forcing function to expose anything.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Insurance
+- Australia
+- Underwriting
+- Property and Casualty
+- Construction Insurance
+- Managing General Agent
+- Broker
+- Wholesale Insurance
+- Insurtech
+- Partner Gated
+- No Public API
+created: '2026-07-25'
+modified: '2026-07-25'
+specificationVersion: '0.19'
+apis: []
+common:
+- type: Website
+  url: https://ensurance.com.au/
+  name: Ensurance Website
+  description: >-
+    Primary domain. TLS certificate expired 2025-09-26; every path returns
+    HTTP 301 (nginx/1.26.2) to Chase Underwriting Solutions. Probed 2026-07-25.
+- type: Website
+  url: https://www.chaseunderwriting.com.au/capabilities/professional-risks/
+  name: Chase Underwriting Solutions (redirect target)
+  description: >-
+    HTTP 200. The live destination of every ensurance.com.au and ensurance.ltd
+    request as of 2026-07-25. Chase Underwriting Solutions Pty Ltd, ABN 50 156
+    554 808, AFSL 454344 — an Australian professional-lines underwriting agency.
+    Publishes no API, no developer portal and no ACORD reference.
+- type: Website
+  url: https://3rdp.ensurance.com.au/
+  name: 3RDP Remote Platform
+  description: >-
+    HTTP 200. The only ensurance.com.au hostname still serving its own content.
+    "3RDP | Innovative Remote Platform" describes an internal secure remote-desktop
+    and VPN environment for staff. Not an insurance API surface.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,83 @@
+# Ensurance (ensurance)
+
+Ensurance Limited (ASX:ENA) was an Australian ASX-listed insurance underwriting agency headquartered in Perth, Western Australia, marketing itself as "innovating the online insurance sector." Its Australian arm, Ensurance Underwriting Australia, operated as a wholesale underwriting agency under an Australian Financial Services Licence, placing construction-specific products with a consortium of local and international capacity — Lloyd's, Swiss Re and XL Catlin — and distributing them exclusively through a broker network the company described as 340-plus intermediaries. A sister company, Ensurance UK Limited, ran as a Managing General Agent authorised and regulated by the UK Financial Conduct Authority and a coverholder at Lloyd's.
+
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ensurance/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ensurance/refs/heads/main/apis.yml)
+
+## Tags
+
+- Insurance
+- Australia
+- Underwriting
+- Property and Casualty
+- Construction Insurance
+- Managing General Agent
+- Broker
+- Wholesale Insurance
+- Insurtech
+- Partner Gated
+- No Public API
+
+## Timestamps
+
+- **Created:** 2026-07-25
+- **Modified:** 2026-07-25
+
+## APIs
+
+**None.** Ensurance publishes no public API, and on the evidence available never did.
+
+This is a deliberate, verified empty record rather than an incomplete one. It is exactly the outcome the Australian insurance seam predicts, and recording it accurately is the point.
+
+### What was probed
+
+Every conventional developer path on `ensurance.com.au` — `/developers`, `/developer`, `/api`, `/apis`, `/docs`, `/partners`, `/integrations`, `/developer-portal`, `/brokers` — returns **HTTP 301** from `nginx/1.26.2` to a single Chase Underwriting Solutions page. The redirect is a blanket catch-all: every path resolves to the same `Location`. The domain's TLS certificate (Let's Encrypt E5, `CN=ensurance.com.au`) **expired 2025-09-26** and has not been renewed, so any client using default verification cannot reach the primary domain at all.
+
+The hostnames `developer.`, `developers.`, `docs.`, `api.`, `bob.`, `partner.` and `euw.ensurance.com.au` do not resolve.
+
+### The false positive worth recording
+
+`api.ensurance.ltd` and `developer.ensurance.ltd` both return **HTTP 200**. Neither is a developer surface. Each serves a byte-identical 4,126-byte default Bootstrap landing template titled *"Tapanko - Making Complex Tasks Easy"* — the same body returned by a randomly generated control hostname on the same domain. This is wildcard DNS with an unconfigured web-server default. It is documented here so the 200 status is never mistaken for a portal.
+
+### The only integration surface that ever existed
+
+Ensurance marketing described a "customised online platform" giving intermediaries "fast, simple, reliable and comprehensive construction insurance." That platform was **BOB** at `bob.ensurance.com.au`: an ASP.NET MVC quote-and-proposal wizard behind `/Login/Login`, with per-broker deep links of the form `/Proposal/New/3/Agent/{AGENTCODE}`. Quote and bind were reachable by a logged-in human agent, never by a program. There was no issuance API and no first-notice-of-loss API. The host is now offline.
+
+| Verb | Exposed | Surface |
+| --- | --- | --- |
+| Quote | No | Historic, agent login-walled (BOB) |
+| Bind | No | Historic, agent login-walled (BOB) |
+| Issue | No | Never documented |
+| FNOL | No | Never documented |
+
+### ACORD posture
+
+**No ACORD reference found.** A case-insensitive search for ACORD, AL3, ACORD XML, NGDS and IVANS across the complete 1,520-URL Wayback index for `ensurance.com.au` and its subdomains returned zero matches, and the live Chase Underwriting site names no ACORD standard, agency-download feed, or agency-management-system integration. Australian construction-lines wholesale distribution here ran on a proprietary web portal, not on a standards-based interchange.
+
+### Auth, specs, events
+
+- **Auth model:** none public. No API key issuance, no OAuth2, no mTLS, no SAML federation. `/.well-known/openid-configuration` and `/.well-known/oauth-authorization-server` return 404 on every Ensurance and Chase hostname. The historic BOB portal used form-based session login.
+- **OpenAPI / Swagger:** none. `/openapi.json`, `/openapi.yaml`, `/swagger.json`, `/v1/openapi.json`, `/api-docs`, `/spec` and `/redoc` all 404. There is no `openapi/` directory in this repository because there is nothing real to put in it.
+- **AsyncAPI / webhooks / events:** none.
+- **GraphQL, gRPC, Postman:** none.
+
+## Current status
+
+Every request to `ensurance.com.au` and to the parallel `ensurance.ltd` domain family now lands on **Chase Underwriting Solutions Pty Ltd** (ABN 50 156 554 808, AFSL 454344), an Australian professional-lines underwriting agency covering professional indemnity, cyber liability, IT liability and management liability. Chase publishes no API, no developer portal and no ACORD posture either; brokers are directed to contact regional underwriters directly. The redirect is the observed fact recorded here — no transaction terms are asserted.
+
+One hostname still serves its own content: `3rdp.ensurance.com.au`, a page describing "3RDP | Innovative Remote Platform," an internal secure remote-desktop and VPN environment for staff. It is not an insurance API surface.
+
+## Market context
+
+Australia has the legal machinery for open insurance and no live obligation. APRA supervises prudentially, and the Consumer Data Right that already opened banking and energy was designated to extend to general insurance, then deferred and de-prioritised. General insurers and underwriting agencies therefore face no forcing function to expose anything. Ensurance is a clean illustration of what that produces: a company that positioned itself as innovating online insurance and still shipped its entire intermediary experience as a login-walled web portal, with no API, no specification, and no ACORD posture.
+
+## Identity note
+
+`github.com/ensurance` is an **unrelated** organisation (contact `opensource@howtohireme.ru`, two repositories, last updated 2018). It is deliberately not attributed to this company.
+
+## Links
+
+- [Ensurance (primary domain — expired TLS, 301 catch-all)](https://ensurance.com.au/)
+- [Chase Underwriting Solutions — current redirect destination](https://www.chaseunderwriting.com.au/capabilities/professional-risks/)
+- [3RDP Remote Platform](https://3rdp.ensurance.com.au/)
+- [Review findings](review.yml)
