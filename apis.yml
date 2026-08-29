@@ -30,6 +30,17 @@ description: >-
   faithful data point for a sector where the Consumer Data Right was designated
   for general insurance and then deferred, leaving carriers and underwriting
   agencies with no forcing function to expose anything.
+deliveryModel:
+  model: library
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Library · distributed through package registries, no callable service
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Insurance
