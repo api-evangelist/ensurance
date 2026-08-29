@@ -1,5 +1,7 @@
 aid: ensurance
 url: https://raw.githubusercontent.com/api-evangelist/ensurance/refs/heads/main/apis.yml
+x-api-posture: no-product-api
+x-api-posture-basis: observed
 name: Ensurance
 kind: company
 description: >-
