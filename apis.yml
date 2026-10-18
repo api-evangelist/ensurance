@@ -66,7 +66,7 @@ tags:
 - Property and Casualty
 - Construction Insurance
 - Managing General Agent
-- Brokers
+- Brokerage
 - Wholesale Insurance
 - Insurtech
 tags_raw:
@@ -79,6 +79,7 @@ tags_raw:
 - Broker
 - Wholesale Insurance
 - Insurtech
+- Brokers
 created: '2026-07-25'
 modified: '2026-07-25'
 specificationVersion: '0.23'
